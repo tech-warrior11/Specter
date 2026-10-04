@@ -1,0 +1,22 @@
+id: SCENARIO-PRIV-001
+name: Privilege Escalation Sequence
+description: Simulates an unprivileged account executing elevation commands and altering security token groups.
+events:
+  - source: linux-auth
+    event_type: authentication
+    action: login_success
+    user: developer
+    host: APP-SRV-01
+    source_ip: 10.10.10.15
+    severity: informational
+  - source: linux-audit
+    event_type: privilege
+    action: privilege_change
+    user: developer
+    host: APP-SRV-01
+    severity: high
+expected_detections:
+  - DET-PRIV-001
+expected_entities:
+  - user:developer
+  - host:APP-SRV-01

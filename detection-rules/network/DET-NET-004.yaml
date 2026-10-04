@@ -1,0 +1,16 @@
+id: DET-NET-004
+name: Non-Standard Port Outbound Egress
+severity: medium
+event_type: network
+condition:
+  action: outbound_connection
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Command and Control
+  technique_id: T1571
+  technique_name: Non-Standard Port
+description: Detects outbound communication directed toward uncommon TCP/UDP service ports.

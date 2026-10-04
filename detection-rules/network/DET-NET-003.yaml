@@ -1,0 +1,17 @@
+id: DET-NET-003
+name: Unusual Outbound Network Volume Spike
+severity: high
+event_type: network
+condition:
+  action: outbound_egress
+threshold:
+  count: 1
+  window_minutes: 15
+group_by:
+  - host
+  - destination_ip
+mitre:
+  tactic: Exfiltration
+  technique_id: T1048
+  technique_name: Exfiltration Over Alternative Protocol
+description: Detects large outbound data transmission spikes indicating data exfiltration.

@@ -1,0 +1,18 @@
+id: DET-EXEC-001
+name: Suspicious Process Execution
+severity: high
+event_type: process
+condition:
+  action: process_created
+  process: ["powershell.exe", "pwsh.exe", "cmd.exe", "bash", "sh"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+  - user
+mitre:
+  tactic: Execution
+  technique_id: T1059.001
+  technique_name: "Command and Scripting Interpreter: PowerShell"
+description: Detects command-line script interpreter spawned on an interactive endpoint.

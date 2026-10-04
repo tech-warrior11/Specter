@@ -1,0 +1,91 @@
+id: SCENARIO-MULTI-001
+name: Multi-Stage Enterprise Intrusion Simulation
+description: Complete synthetic 6-stage attack chain spanning Brute Force -> Initial Access -> Process Execution -> Privilege Escalation -> Credential Collection -> Command & Control Network Egress.
+events:
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_success
+    user: testuser
+    host: LAB-PC-01
+    source_ip: 198.51.100.25
+    severity: high
+  - source: sysmon
+    event_type: process
+    action: process_created
+    user: testuser
+    host: LAB-PC-01
+    process: powershell.exe
+    parent_process: cmd.exe
+    severity: high
+  - source: linux-audit
+    event_type: privilege
+    action: privilege_change
+    user: testuser
+    host: LAB-PC-01
+    severity: critical
+  - source: sysmon
+    event_type: file
+    action: sensitive_access
+    user: testuser
+    host: LAB-PC-01
+    file_path: /etc/shadow
+    severity: critical
+  - source: zeek-conn
+    event_type: network
+    action: outbound_connection
+    user: testuser
+    host: LAB-PC-01
+    destination_ip: 198.51.100.25
+    domain: c2-server.test
+    severity: high
+expected_detections:
+  - DET-AUTH-001
+  - DET-AUTH-002
+  - DET-EXEC-001
+  - DET-PRIV-001
+  - DET-COL-001
+  - DET-NET-001
+  - DET-MULTI-001
+  - DET-MULTI-005
+expected_entities:
+  - user:testuser
+  - host:LAB-PC-01
+  - ip:198.51.100.25
+  - proc:LAB-PC-01:powershell.exe
+  - file:/etc/shadow
+  - domain:c2-server.test

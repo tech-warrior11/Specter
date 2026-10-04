@@ -1,0 +1,17 @@
+id: DET-PRIV-003
+name: Privilege Escalation Sequence
+severity: critical
+event_type: privilege
+condition:
+  action: ["token_impersonation", "sudo_elevation", "group_added"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+  - user
+mitre:
+  tactic: Privilege Escalation
+  technique_id: T1134
+  technique_name: Access Token Manipulation
+description: Detects token impersonation or privileged security group modification.

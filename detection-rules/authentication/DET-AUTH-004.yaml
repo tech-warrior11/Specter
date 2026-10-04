@@ -1,0 +1,16 @@
+id: DET-AUTH-004
+name: Unusual Login Time Deviation
+severity: medium
+event_type: authentication
+condition:
+  action: login_success
+threshold:
+  count: 1
+  window_minutes: 60
+group_by:
+  - user
+mitre:
+  tactic: Defense Evasion
+  technique_id: T1078.002
+  technique_name: Domain Accounts
+description: Detects successful user authentication occurring outside standard operational business hours.

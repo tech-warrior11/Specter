@@ -1,0 +1,17 @@
+id: DET-PRIV-001
+name: Unexpected Privilege Change
+severity: high
+event_type: privilege
+condition:
+  action: privilege_change
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - user
+  - host
+mitre:
+  tactic: Privilege Escalation
+  technique_id: T1078.001
+  technique_name: Default Accounts
+description: Detects elevation of account privilege token or role assignment changes.

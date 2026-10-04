@@ -1,0 +1,17 @@
+id: DET-NET-001
+name: Repeated Outbound Connection to External IP
+severity: medium
+event_type: network
+condition:
+  action: outbound_connection
+threshold:
+  count: 5
+  window_minutes: 10
+group_by:
+  - host
+  - destination_ip
+mitre:
+  tactic: Command and Control
+  technique_id: T1071.001
+  technique_name: "Application Layer Protocol: Web Protocols"
+description: Detects recurring network egress beaconing to an external destination IP address.

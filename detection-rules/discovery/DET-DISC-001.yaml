@@ -1,0 +1,16 @@
+id: DET-DISC-001
+name: Network Scanning Pattern
+severity: medium
+event_type: network
+condition:
+  action: port_scan
+threshold:
+  count: 10
+  window_minutes: 5
+group_by:
+  - source_ip
+mitre:
+  tactic: Discovery
+  technique_id: T1046
+  technique_name: Network Service Discovery
+description: Detects rapid connection attempts to multiple network ports from a single source host.

@@ -1,0 +1,17 @@
+id: DET-EXEC-003
+name: Encoded Command Line Indicator
+severity: high
+event_type: process
+condition:
+  action: process_created
+  keywords: ["-encodedcommand", "-enc", "-e", "frombase64string", "base64"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Defense Evasion
+  technique_id: T1027
+  technique_name: Obfuscated/Encoded Files or Information
+description: Detects command execution utilizing base64 or encoded argument syntax.

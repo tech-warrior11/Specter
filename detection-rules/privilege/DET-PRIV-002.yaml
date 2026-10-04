@@ -1,0 +1,16 @@
+id: DET-PRIV-002
+name: Administrative Action by Standard User
+severity: high
+event_type: privilege
+condition:
+  action: admin_action
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - user
+mitre:
+  tactic: Privilege Escalation
+  technique_id: T1548
+  technique_name: Abuse Elevation Control Mechanism
+description: Detects administrative operations performed by non-whitelisted standard user accounts.

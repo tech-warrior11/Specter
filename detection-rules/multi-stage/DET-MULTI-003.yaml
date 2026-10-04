@@ -1,0 +1,19 @@
+id: DET-MULTI-003
+name: Privilege Escalation Followed By Sensitive File Access
+severity: critical
+event_type: multi-stage
+condition:
+  sequence:
+    - { event_type: "privilege", action: "privilege_change" }
+    - { event_type: "file", action: "sensitive_access" }
+threshold:
+  count: 2
+  window_minutes: 10
+group_by:
+  - host
+  - user
+mitre:
+  tactic: Collection
+  technique_id: T1005
+  technique_name: Data from Local System
+description: Correlates privilege elevation followed by immediate access to sensitive files and credentials.

@@ -1,0 +1,53 @@
+id: SCENARIO-AUTH-001
+name: Authentication Anomaly & Brute Force Simulation
+description: Simulates repeated failed authentication attempts against a target account followed by an off-hours login.
+events:
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_failed
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: medium
+  - source: linux-auth
+    event_type: authentication
+    action: login_success
+    user: jdoe
+    host: LAB-PC-01
+    source_ip: 10.10.10.50
+    severity: high
+expected_detections:
+  - DET-AUTH-001
+  - DET-AUTH-002
+expected_entities:
+  - user:jdoe
+  - host:LAB-PC-01
+  - ip:10.10.10.50

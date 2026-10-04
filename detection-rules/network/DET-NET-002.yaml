@@ -1,0 +1,16 @@
+id: DET-NET-002
+name: New Destination Domain Connection
+severity: high
+event_type: network
+condition:
+  action: dns_query
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - domain
+mitre:
+  tactic: Command and Control
+  technique_id: T1071.004
+  technique_name: DNS C2
+description: Detects lookup and egress toward previously unseen external domains.

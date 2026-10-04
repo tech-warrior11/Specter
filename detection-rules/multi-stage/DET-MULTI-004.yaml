@@ -1,0 +1,18 @@
+id: DET-MULTI-004
+name: Collection Leading to Network Exfiltration
+severity: critical
+event_type: multi-stage
+condition:
+  sequence:
+    - { event_type: "file", action: "sensitive_access" }
+    - { event_type: "network", action: "outbound_connection" }
+threshold:
+  count: 2
+  window_minutes: 15
+group_by:
+  - host
+mitre:
+  tactic: Exfiltration
+  technique_id: T1041
+  technique_name: Exfiltration Over C2 Channel
+description: Correlates sensitive file collection followed by outbound connection to external destinations.

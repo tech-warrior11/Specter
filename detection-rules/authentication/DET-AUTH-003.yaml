@@ -1,0 +1,16 @@
+id: DET-AUTH-003
+name: Multiple Users Targeted from Single IP
+severity: high
+event_type: authentication
+condition:
+  action: login_failed
+threshold:
+  count: 3
+  window_minutes: 5
+group_by:
+  - source_ip
+mitre:
+  tactic: Credential Access
+  technique_id: T1110.003
+  technique_name: Password Spraying
+description: Detects password spraying activity where multiple distinct usernames are targeted from a single originating IP address.

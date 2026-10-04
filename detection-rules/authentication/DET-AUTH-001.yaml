@@ -1,0 +1,17 @@
+id: DET-AUTH-001
+name: Repeated Failed Authentication
+severity: high
+event_type: authentication
+condition:
+  action: login_failed
+threshold:
+  count: 5
+  window_minutes: 5
+group_by:
+  - source_ip
+  - user
+mitre:
+  tactic: Credential Access
+  technique_id: T1110
+  technique_name: Brute Force
+description: Detects repeated failed authentication attempts against an account or from an IP address within a short time window.

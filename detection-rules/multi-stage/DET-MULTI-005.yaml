@@ -1,0 +1,22 @@
+id: DET-MULTI-005
+name: Full Multi-Stage Cyber Kill-Chain Sequence
+severity: critical
+event_type: multi-stage
+condition:
+  sequence:
+    - { event_type: "authentication", action: "login_success" }
+    - { event_type: "process", action: "process_created" }
+    - { event_type: "privilege", action: "privilege_change" }
+    - { event_type: "file", action: "sensitive_access" }
+    - { event_type: "network", action: "outbound_connection" }
+threshold:
+  count: 5
+  window_minutes: 30
+group_by:
+  - host
+  - user
+mitre:
+  tactic: Multiple
+  technique_id: T1106
+  technique_name: Multi-Stage Attack Chain
+description: Correlates an end-to-end multi-stage intrusion sequence spanning Initial Access -> Execution -> Privilege Escalation -> Collection -> Network Exfiltration.

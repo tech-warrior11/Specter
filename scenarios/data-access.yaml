@@ -1,0 +1,25 @@
+id: SCENARIO-COL-001
+name: Sensitive Data Access & Archive Staging
+description: Simulates unexpected access to password databases and creation of a compressed staging archive.
+events:
+  - source: sysmon
+    event_type: file
+    action: sensitive_access
+    user: alice
+    host: WORKSTATION-01
+    file_path: C:\Users\alice\AppData\Local\Google\Chrome\User Data\Default\Login Data
+    severity: high
+  - source: sysmon
+    event_type: process
+    action: process_created
+    user: alice
+    host: WORKSTATION-01
+    process: 7z.exe
+    severity: medium
+expected_detections:
+  - DET-COL-001
+  - DET-COL-003
+expected_entities:
+  - user:alice
+  - host:WORKSTATION-01
+  - file:C:\Users\alice\AppData\Local\Google\Chrome\User Data\Default\Login Data

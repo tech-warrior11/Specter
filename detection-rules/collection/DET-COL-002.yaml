@@ -1,0 +1,17 @@
+id: DET-COL-002
+name: Unusual File Access Volume
+severity: high
+event_type: file
+condition:
+  action: file_read
+threshold:
+  count: 50
+  window_minutes: 5
+group_by:
+  - user
+  - host
+mitre:
+  tactic: Collection
+  technique_id: T1020
+  technique_name: Automated Collection
+description: Detects automated mass file access or directory crawling behavior within a brief time frame.

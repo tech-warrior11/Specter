@@ -1,0 +1,18 @@
+id: DET-COL-001
+name: Sensitive File Access
+severity: high
+event_type: file
+condition:
+  action: sensitive_access
+  file_patterns: ["*password*", "*shadow*", "*SAM*", "*id_rsa*", "*.kdbx", "*secret*"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - user
+  - host
+mitre:
+  tactic: Collection
+  technique_id: T1005
+  technique_name: Data from Local System
+description: Detects process or user interaction with sensitive configuration, credential, or key storage files.

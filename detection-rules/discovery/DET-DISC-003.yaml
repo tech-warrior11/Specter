@@ -1,0 +1,17 @@
+id: DET-DISC-003
+name: Security Software Discovery Probe
+severity: medium
+event_type: process
+condition:
+  action: process_created
+  keywords: ["sc.exe query", "tasklist", "netsh advfirewall", "fltmc.exe", "Get-MpComputerStatus"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Discovery
+  technique_id: T1518.001
+  technique_name: Security Software Discovery
+description: Detects queries to enumerate installed endpoint detection, antivirus, or firewall software.

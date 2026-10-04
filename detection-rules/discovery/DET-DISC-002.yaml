@@ -1,0 +1,17 @@
+id: DET-DISC-002
+name: Host & Account Discovery Commands
+severity: medium
+event_type: process
+condition:
+  action: process_created
+  process: ["whoami.exe", "whoami", "net.exe", "ipconfig.exe", "ifconfig", "nltest.exe", "dsquery.exe", "systeminfo.exe"]
+threshold:
+  count: 3
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Discovery
+  technique_id: T1033
+  technique_name: System Owner/User Discovery
+description: Detects the execution of multiple system and account enumeration tools in rapid succession.

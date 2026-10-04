@@ -1,0 +1,17 @@
+id: DET-AUTH-002
+name: Success After Repeated Failures
+severity: critical
+event_type: authentication
+condition:
+  action: login_success
+threshold:
+  count: 1
+  window_minutes: 10
+group_by:
+  - source_ip
+  - user
+mitre:
+  tactic: Initial Access
+  technique_id: T1078
+  technique_name: Valid Accounts
+description: Detects a successful authentication event following multiple failed login attempts on the same entity.

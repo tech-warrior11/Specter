@@ -1,0 +1,17 @@
+id: DET-EXEC-002
+name: Unexpected Parent-Child Process
+severity: high
+event_type: process
+condition:
+  action: process_created
+  parent_process: ["word.exe", "excel.exe", "outlook.exe", "wmiprvse.exe", "w3wp.exe"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Execution
+  technique_id: T1059
+  technique_name: Command and Scripting Interpreter
+description: Detects command shell or utility spawned by an unexpected parent application (Office binary, Web Server, WMI).

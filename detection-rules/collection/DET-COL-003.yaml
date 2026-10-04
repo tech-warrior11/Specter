@@ -1,0 +1,17 @@
+id: DET-COL-003
+name: Sensitive Data Archive Staging
+severity: medium
+event_type: process
+condition:
+  action: process_created
+  process: ["7z.exe", "winrar.exe", "tar", "zip", "gzip"]
+threshold:
+  count: 1
+  window_minutes: 5
+group_by:
+  - host
+mitre:
+  tactic: Collection
+  technique_id: T1560.001
+  technique_name: "Archive Collected Data: Archive via Utility"
+description: Detects compression utilities executed to package collected files prior to exfiltration.

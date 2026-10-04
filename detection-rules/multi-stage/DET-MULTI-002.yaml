@@ -1,0 +1,19 @@
+id: DET-MULTI-002
+name: Execution Leading to Privilege Escalation
+severity: high
+event_type: multi-stage
+condition:
+  sequence:
+    - { event_type: "process", action: "process_created" }
+    - { event_type: "privilege", action: "privilege_change" }
+threshold:
+  count: 2
+  window_minutes: 10
+group_by:
+  - host
+  - user
+mitre:
+  tactic: Privilege Escalation
+  technique_id: T1068
+  technique_name: Exploitation for Privilege Escalation
+description: Correlates suspicious process execution with immediate elevation of account privileges on the host.

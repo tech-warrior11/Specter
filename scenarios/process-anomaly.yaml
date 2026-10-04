@@ -1,0 +1,27 @@
+id: SCENARIO-EXEC-001
+name: Process Anomaly & LOLBIN Invocation
+description: Simulates abnormal living-off-the-land binary execution and discovery probes on an endpoint.
+events:
+  - source: sysmon
+    event_type: process
+    action: process_created
+    user: alice
+    host: WORKSTATION-05
+    process: certutil.exe
+    parent_process: cmd.exe
+    severity: high
+  - source: sysmon
+    event_type: process
+    action: process_created
+    user: alice
+    host: WORKSTATION-05
+    process: whoami.exe
+    parent_process: certutil.exe
+    severity: medium
+expected_detections:
+  - DET-EXEC-004
+  - DET-DISC-002
+expected_entities:
+  - user:alice
+  - host:WORKSTATION-05
+  - proc:WORKSTATION-05:certutil.exe

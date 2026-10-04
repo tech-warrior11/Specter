@@ -1,0 +1,17 @@
+id: SCENARIO-AUTH-002
+name: Suspicious Off-Hours Administrative Login
+description: Simulates an administrative login originating from an external IP address outside typical operational baseline hours.
+events:
+  - source: linux-auth
+    event_type: authentication
+    action: login_success
+    user: root_admin
+    host: PROD-SRV-01
+    source_ip: 198.51.100.77
+    severity: high
+expected_detections:
+  - DET-AUTH-004
+expected_entities:
+  - user:root_admin
+  - host:PROD-SRV-01
+  - ip:198.51.100.77
