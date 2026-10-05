@@ -211,3 +211,15 @@ async def system_metrics():
         "graph_nodes_count": 0,
         "graph_edges_count": 0
     }
+
+@app.get("/seed", tags=["Setup"])
+async def trigger_seeding():
+    import asyncio
+    import sys
+    import os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+    from scripts.seed import seed_database
+    # Run in background to avoid timeout
+    asyncio.create_task(seed_database(100))
+    return {"message": "Database seeding started in the background! Please wait 1-2 minutes before logging in."}
+

@@ -44,10 +44,10 @@ async def seed_database(target_events_count: int = 20000):
     async with AsyncSessionLocal() as session:
         print(f"[*] Seeding Default Users & RBAC Roles...")
         default_users = [
-            ("admin", "admin@threatgraph.local", os.environ.get("SEED_ADMIN_PASSWORD", "changeme_admin"), "ADMIN"),
-            ("hunter", "hunter@threatgraph.local", os.environ.get("SEED_HUNTER_PASSWORD", "changeme_hunter"), "THREAT_HUNTER"),
-            ("analyst", "analyst@threatgraph.local", os.environ.get("SEED_ANALYST_PASSWORD", "changeme_analyst"), "SOC_ANALYST"),
-            ("viewer", "viewer@threatgraph.local", os.environ.get("SEED_VIEWER_PASSWORD", "changeme_viewer"), "VIEWER"),
+            ("admin", "admin@threatgraph.local", os.environ["SEED_ADMIN_PASSWORD"], "ADMIN"),
+            ("hunter", "hunter@threatgraph.local", os.environ["SEED_HUNTER_PASSWORD"], "THREAT_HUNTER"),
+            ("analyst", "analyst@threatgraph.local", os.environ["SEED_ANALYST_PASSWORD"], "SOC_ANALYST"),
+            ("viewer", "viewer@threatgraph.local", os.environ["SEED_VIEWER_PASSWORD"], "VIEWER"),
         ]
         for uname, uemail, upass, urole in default_users:
             user = User(
