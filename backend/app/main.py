@@ -183,6 +183,11 @@ async def websocket_live_stream(websocket: WebSocket):
 
 
 # Observability Endpoints
+@app.get("/", tags=["Health"])
+@app.head("/", tags=["Health"])
+async def root():
+    return {"status": "online", "service": settings.APP_NAME}
+
 @app.get("/health", tags=["Observability"])
 async def health_check():
     return {
