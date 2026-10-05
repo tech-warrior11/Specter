@@ -1,5 +1,7 @@
 # Specter
 
+[![Live Preview](https://img.shields.io/badge/Live_Preview-View_App-00ff9d?style=for-the-badge&logo=vercel&logoColor=black)](https://specter-git-main-tech-warrior3.vercel.app)
+
 Specter is an advanced enterprise-grade security operations center (SOC) and threat intelligence platform designed for modern tactical operations and automated defense. It features a neo-minimalist cyberpunk design with a highly responsive, real-time interface.
 
 ## Core Modules & Tools
